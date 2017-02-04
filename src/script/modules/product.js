@@ -9,27 +9,14 @@ function getProducts(product) {
     var IMAGE_SIZE = 220;
     var pictureProduct = new Image(IMAGE_SIZE, IMAGE_SIZE);
 
-    var TIMEOUT;
-    var IMAGE_LOAD_TIMEOUT = 10;
-
     var itemImgWrap = productElement.querySelector('.item__img-link');
 
     pictureProduct.onload = function() {
         itemImgWrap.replaceChild(pictureProduct, itemImgWrap.querySelector('img'));
-        clearTimeout(TIMEOUT);
     };
-
-    pictureProduct.onerror = function() {
-        productElement.classList.add('load-failure');
-    };
-
-    TIMEOUT = setTimeout(function() {
-        productElement.classList.add('load-failure');
-    }, IMAGE_LOAD_TIMEOUT);
 
     pictureProduct.src = product.primaryImageUrl;
-
-
+    
     //= links.js
     renderLinks(product.assocProducts);
 
