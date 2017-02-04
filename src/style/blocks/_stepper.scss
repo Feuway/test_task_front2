@@ -1,0 +1,56 @@
+.stepper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 40px;
+
+    &__input {
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        padding: 12px 0 10px;
+        border: 1px solid #ccc;
+        border-right: none;
+        background: #fff;
+        color: #333;
+        font-size: 13px;
+        line-height: 1.2;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    &__btn {
+        width: 25px;
+        height: 20px;
+        background: #fff url("../../img/templates/jquery.fs.stepper-arrows.png") no-repeat ;
+        border: 1px solid #ccc;
+        transition: .2s background-color;
+
+        &--up {
+            border-bottom: none;
+            background-position: -29px 0;
+
+            &:hover {
+                background-color: #666;
+                background-position: -1px 0;
+            }
+
+            &:active {
+                background-color: #999;
+            }
+        }
+
+        &--down {
+            background-position: -29px -20px;
+
+            &:hover {
+                background-color: #666;
+                background-position: -1px -20px;
+            }
+
+            &:active {
+                background-color: #999;
+            }
+        }
+    }
+}

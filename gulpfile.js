@@ -23,20 +23,22 @@ var project = {
         script: 'dist/script/',
         style: 'dist/style/',
         img: 'dist/img/',
-        fonts: 'dist/fonts/'
+        fonts: 'dist/fonts/',
+        bin: 'dist/bin'
     },
     src: {
         html: 'src/*.html',
         script: 'src/script/main.js',
         style: 'src/style/main.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        img: 'src/img/**/*.{png, jpg}',
+        fonts: 'src/fonts/**/*.*',
+        bin: 'src/bin/**/*.*'
     },
     watch: {
         html: 'src/**/*.html',
         script: 'src/script/**/*.js',
         style: 'src/style/**/*.scss',
-        img: 'src/img/**/*.*',
+        img: 'src/img/**/*.{png, jpg}',
         fonts: 'src/fonts/**/*.*'
     },
     clean: './dist'
@@ -46,7 +48,6 @@ var config = {
     server: {
         baseDir: "./dist"
     },
-    tunnel: true,
     host: 'localhost',
     port: 3000,
     logPrefix: "Frontend",
@@ -101,17 +102,22 @@ gulp.task('fonts:build', function() {
         .pipe(gulp.dest(project.dist.fonts))
 });
 
+gulp.task('bin:build', function() {
+    gulp.src(project.src.bin)
+        .pipe(gulp.dest(project.dist.bin))
+});
+
 gulp.task('build', [
-    'clean',
     'html:build',
     'script:build',
     'style:build',
     'fonts:build',
-    'image:build'
+    'image:build',
+    'bin:build'
 ]);
 
 gulp.task('clean', function() {
-    return del(project.clean);
+    del(project.clean);
 });
 
 gulp.task('html:watch', function () {
@@ -146,5 +152,5 @@ gulp.task('server', function () {
     browserSync(config);
 });
 
-gulp.task('default', ['build', 'server', 'watch']);
+gulp.task('default', ['clean', 'build', 'server', 'watch']);
 

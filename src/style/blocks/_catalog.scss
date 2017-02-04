@@ -1,0 +1,23 @@
+.catalog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        width: 240px;
+        height: 545px;
+
+        @media($w-tablet) {
+            flex-wrap: wrap;
+            width: 750px;
+            height: 260px;
+        }
+
+        @media($w-desktop) {
+            width: 1000px;
+        }
+    }
+}
